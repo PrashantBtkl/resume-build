@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get    'edit'    => 'home#edit'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
+  get    'signup'  => 'sessions#new_user'
+  post   'signup'  => 'sessions#signup'
   delete 'logout'  => 'sessions#destroy'
 
   resources :profiles , only: [:update]

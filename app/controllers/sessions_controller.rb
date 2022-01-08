@@ -13,6 +13,23 @@ class SessionsController < ApplicationController
             render('new')
         end
     end
+
+    def new_user
+        render('signup')
+    end
+
+    def signup
+        user = User.create({name: params[:session][:username], email: params[:session][:email], password: params[:session][:password]})
+        if user.valid?
+            user.profile = Profile.new
+            user.profile.save
+            user.profile.educations.create
+            render('new')
+        else
+            flash.now[:danger] = 'Failed to create new user'
+            render('signup')
+        end
+    end
   
     def destroy
         log_out
