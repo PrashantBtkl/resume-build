@@ -8,6 +8,8 @@ class ProfilesController < ApplicationController
     def update
         updated_profile_params = update_array_attributes_in_params(profile_params)
         @profile = Profile.find(params[:id])
+        @profile.avatar.purge_later  # doing purge_later because 'avatar' has 'has_one_attached' which makes the foreign key nil if deleted.
+        @profile.avatar.attach(params[:avatar])
         if @profile.update(updated_profile_params)
             flash[:success] = "Profile updated successfully."
             redirect_to edit_url
@@ -25,7 +27,7 @@ class ProfilesController < ApplicationController
 
     private
         def profile_params
-            params.require(:profile).permit(:name, :job_title, :total_experience, :overview, 
+            params.require(:profile).permit(:name, :avatar, :job_title, :total_experience, :overview, 
                 :career_highlights, :primary_skills, :secondary_skills,
                 :educations_attributes => [ :id, :school, :degree, :description, :start, :end, :_destroy]
             )

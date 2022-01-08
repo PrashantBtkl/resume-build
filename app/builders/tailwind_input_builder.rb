@@ -42,4 +42,13 @@ class TailwindInputBuilder < ActionView::Helpers::FormBuilder
             )
         )
     end
+
+    def file_field(attribute, options={})
+        super(
+            attribute,
+            options.reverse_merge(
+                class: "hidden"
+            )
+        )
+    end
 end

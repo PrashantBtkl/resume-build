@@ -14,5 +14,13 @@ module ProfilesHelper
         params[:secondary_skills] = get_array_from_comma_separated_string(params[:secondary_skills])
         params
     end
+
+    def profile_pic(user)
+        if user.avatar.attached?
+            user.avatar.variant(resize: "200x200")
+        else
+            gravatar_url_for(user)
+        end
+    end
     
 end
