@@ -15,10 +15,11 @@ module ProfilesHelper
         params
     end
 
-    def profile_pic(user)
-        if user.avatar.attached?
-            user.avatar.variant(resize: "200x200")
+    def profile_pic(profile)
+        if profile.avatar.attached?
+            profile.avatar.variant(resize: "200x200")
         else
+            user = User.find_by(params[:id])
             gravatar_url_for(user)
         end
     end
