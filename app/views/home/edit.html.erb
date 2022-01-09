@@ -14,7 +14,7 @@
                 <%= image_tag(profile_pic(@profile)) %>
             </div>
             <%= render 'shared/input/buttons/upload' do %>
-                <%= f.file_field :avatar, accept: "image/*", placeholder: "New avatar" %>
+                <%= f.file_field :avatar, id: "avatar", accept: "image/*", placeholder: "New avatar" %>
             <% end %><br/>
             <%= f.text_field :job_title, value: @profile.job_title, placeholder: "Job title" %><br/>
             <%= f.text_field :total_experience, value: @profile.total_experience, placeholder: "Total experience" %><br/>
@@ -31,6 +31,13 @@
             <%= f.text_field :secondary_skills, value: concat_str_with_comma(@profile.secondary_skills), placeholder: "Secondary skills" %>
             <%= render 'shared/multiple_inputs_message' %>
             
+        <% end %>
+
+        <%= render 'shared/edit_section', title: "Experience" do %>
+            <%= f.fields_for :experiences do |experience| %>
+                <%= render 'shared/input/experience', experience: experience %>
+            <% end %><br />
+            <%= render 'shared/input/buttons/add', label: "+ Add Experience", path: "/experiences/new" %>
         <% end %>
 
         <%= render 'shared/edit_section', title: "Education" do %>

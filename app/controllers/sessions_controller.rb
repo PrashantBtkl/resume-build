@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
             user.profile = Profile.new
             user.profile.save
             user.profile.educations.create
+            user.profile.experiences.create
             render('new')
         else
             flash.now[:danger] = 'Failed to create new user'
