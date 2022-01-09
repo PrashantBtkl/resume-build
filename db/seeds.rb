@@ -10,3 +10,4 @@ user = User.new({name: "John Doe", email:"johndoe@example.com", password:"passwo
 user.profile = Profile.new
 user.save
 user.profile.educations.create
+user.profile.experiences.create
