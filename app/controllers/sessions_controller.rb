@@ -23,12 +23,10 @@ class SessionsController < ApplicationController
         if user.valid?
             user.profile = Profile.new
             user.profile.save
-            user.profile.educations.create
-            user.profile.experiences.create
-            render('new')
+            redirect_to(root_url)
         else
             flash.now[:danger] = 'Failed to create new user'
-            render('signup')
+            redirect_to(signup_path)
         end
     end
   

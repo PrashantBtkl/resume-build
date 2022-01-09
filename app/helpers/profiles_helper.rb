@@ -4,8 +4,9 @@ module ProfilesHelper
     def get_date_in_month_year_format(date)
         if date.nil?
             return ""
+        else
+            date.strftime("%b %Y")
         end
-        date.strftime("%b %Y")
     end
 
     def update_array_attributes_in_params(params)
