@@ -86,10 +86,10 @@ ActiveRecord::Schema.define(version: 2022_01_08_153543) do
     t.string "url"
     t.text "tech_stack"
     t.text "description"
-    t.bigint "profile_id"
+    t.bigint "experience_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["profile_id"], name: "index_projects_on_profile_id"
+    t.index ["experience_id"], name: "index_projects_on_experience_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -106,5 +106,5 @@ ActiveRecord::Schema.define(version: 2022_01_08_153543) do
   add_foreign_key "educations", "profiles"
   add_foreign_key "experiences", "profiles"
   add_foreign_key "profiles", "users"
-  add_foreign_key "projects", "profiles"
+  add_foreign_key "projects", "experiences"
 end

@@ -6,7 +6,7 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.text :tech_stack
       t.text :description
 
-      t.belongs_to :profile, index: true, foreign_key: true
+      t.belongs_to :experience, index: true, foreign_key: true
       t.timestamps
     end
   end
