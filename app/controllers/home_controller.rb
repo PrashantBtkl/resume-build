@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-
   def index
     logged_in_user
     @user = current_user
@@ -8,8 +7,7 @@ class HomeController < ApplicationController
   def edit
     logged_in_user
     if current_user
-        @profile = current_user.profile
+      @profile = current_user.profile
     end
   end
-
 end

@@ -27,10 +27,10 @@ class ProfilesController < ApplicationController
   def share
     @profile = Profile.find_by_id(params[:id])
     if @profile
-        render('home/public')
+      render('home/public')
     else
-        flash[:danger] = 'Profile doesnt exist'
-        redirect_to root_url
+      flash[:danger] = 'Profile doesnt exist'
+      redirect_to root_url
     end
   end
 

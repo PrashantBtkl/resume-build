@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   post   'signup'  => 'sessions#signup'
   delete 'logout'  => 'sessions#destroy'
 
-  resources :profiles , only: [:index, :update] do
+  resources :profiles, only: [:index, :update] do
     collection do
       get 'public/:id', to: 'profiles#share', as: 'public'
     end
   end
-  resources :educations , only: [:new]
-  resources :experiences , only: [:new, :update]
-  resources :projects , only: [:new, :update]
+  resources :educations, only: [:new]
+  resources :experiences, only: [:new, :update]
+  resources :projects, only: [:new, :update]
 end
