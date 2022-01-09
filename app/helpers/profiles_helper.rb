@@ -24,5 +24,10 @@ module ProfilesHelper
             gravatar_url_for(user)
         end
     end
+
+    def attach_profile_pic(profile, avatar_image)
+        profile.avatar.purge_later  # doing purge_later because 'avatar' has 'has_one_attached' which makes the foreign key nil if deleted.
+        profile.avatar.attach(avatar_image)
+    end
     
 end
