@@ -8,8 +8,7 @@ class ProfilesController < ApplicationController
   def update
     updated_profile_params = update_array_attributes_in_params(profile_params)
     @profile = Profile.find(params[:id])
-    @profile.avatar.purge_later  # doing purge_later because 'avatar' has 'has_one_attached' which makes the foreign key nil if deleted.
-    @profile.avatar.attach(params[:avatar])
+    attach_profile_pic(@profile, params[:avatar])
     if @profile.update(updated_profile_params)
       flash[:success] = 'Profile updated successfully.'
       redirect_to edit_url
@@ -23,6 +22,16 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     @user = User.find(@profile.user_id)
     redirect_to(root_url) unless @user == current_user
+  end
+
+  def share
+    @profile = Profile.find_by_id(params[:id])
+    if @profile
+        render('home/public')
+    else
+        flash[:danger] = 'Profile doesnt exist'
+        redirect_to root_url
+    end
   end
 
   private
